@@ -58,9 +58,23 @@ func ListTasks() {
 }
 
 func CompleteTask(id int) {
-	panic("unimplemented")
+	for i, t := range tasks {
+        if t.ID == id {
+            tasks[i].Done = true
+            fmt.Printf("Task %d marked as completed.\n", id)
+            return
+        }
+    }
+    fmt.Printf("Task %d not found.\n", id)
 }
 
 func DeleteTask(id int) {
-	panic("unimplemented")
+	for i, t := range tasks {
+		if t.ID == id {
+			tasks = append(tasks[:i], tasks[i+1:]...)
+			fmt.Printf("Task %d deleted.\n", id)
+			return
+		}
+	}
+	fmt.Printf("Task %d not found.\n", id)
 }
