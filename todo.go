@@ -91,6 +91,11 @@ func ListTasks() {
 }
 
 func CompleteTask(id int) {
+	tasks, err := loadTasks()
+	if err != nil {
+		panic(err)
+		return
+	}
 	for i, t := range tasks {
         if t.ID == id {
             tasks[i].Done = true
@@ -102,6 +107,11 @@ func CompleteTask(id int) {
 }
 
 func DeleteTask(id int) {
+	tasks, err := loadTasks()
+	if err != nil {
+		panic(err)
+		return
+	}
 	for i, t := range tasks {
 		if t.ID == id {
 			tasks = append(tasks[:i], tasks[i+1:]...)
